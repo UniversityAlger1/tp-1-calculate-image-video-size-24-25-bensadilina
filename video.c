@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "config/video.h"
+
 // Parameters:
 //   w: width of the image
 //   h: height of the image
@@ -11,15 +12,15 @@
 //   colored video size (based on the unit passed parametter)
 float video(int w, int h, int durationMovie, int durationCredits, int fps, char* unit) {
    // Constants for unit conversion
-    const float BYTE_TO_KB = 1024.0;
-    const float BYTE_TO_MB = 1024.0 * 1024.0;
-    const float BYTE_TO_GB = 1024.0 * 1024.0 * 1024.0;
+    const float BYTE_TO_KB = 8* 1024.0;
+    const float BYTE_TO_MB = 8*1024.0 * 1024.0;
+    const float BYTE_TO_GB = 8*1024.0 * 1024.0 * 1024.0;
     // Calculate size of the colored section (RGB: 3 bytes per pixel)
-    long long colorSectionSize = (long long)w * h * 3 * fps * durationMovie;
+    float colorSectionSize = (float)w * h *8* 3* fps * durationMovie;
     // Calculate size of the black-and-white section (1 byte per pixel)
-    long long bwSectionSize = (long long)w * h * 1 * fps * durationCredits;
+    float bwSectionSize = (float)w * h * 1 * fps * durationCredits;
     // Total size in bytes
-    long long totalSize = colorSectionSize + bwSectionSize;
+    float totalSize = colorSectionSize + bwSectionSize;
 // Convert size based on the specified unit
     if (strcmp(unit, "bt") == 0) {
         return (float)totalSize; // Bytes
