@@ -9,20 +9,20 @@
 //   colored image size Bitmap (based on the unit passed parametter)
 float coloredBitmap(int w, int h, char* unit) {
   // Calculate size in bits (24 bits per pixel for RGB)
-    long long sizeInBits = (long long)w * h * 24;
+   float sizeInBits = (float)w * h * 24;
 // Convert size based on the unit
     if (strcmp(unit, "bt") == 0) {
         // Return size in bits
         return (float)sizeInBits;
     } else if (strcmp(unit, "ko") == 0) {
         // Convert to kilobits
-        return sizeInBits / 1024.0;
+        return sizeInBits / (8*1024.0);
     } else if (strcmp(unit, "mo") == 0) {
         // Convert to megabits
-        return sizeInBits / (1024.0 * 1024);
+        return sizeInBits / (8*1024.0 * 1024);
     } else if (strcmp(unit, "go") == 0) {
         // Convert to gigabits
-        return sizeInBits / (1024.0 * 1024 * 1024);
+        return sizeInBits / (8*1024.0 * 1024 * 1024);
     } else {
         // If the unit is invalid, print an error message and return 0
         printf("Invalid unit: %s\n", unit);
